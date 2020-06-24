@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class HomeController extends PostsHelpersController
 {
     /**
      * Create a new controller instance.
@@ -19,10 +20,17 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('home');
+    public function index($order = null)
+    {   
+        $user = Auth::user();
+        if($order === null){
+            $posts = $user->posts()->paginate(12);
+        }else{
+            $posts = $this->orderUserPostByPublicationDate($user,$order);
+        }
+        
+        return view('home')->with(compact('posts'));
     }
 }

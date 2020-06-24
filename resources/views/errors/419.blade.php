@@ -1,0 +1,1 @@
+<h4>Page expired (419), please try later, <a href="{{URL::previous()}}">back</a></h4>
