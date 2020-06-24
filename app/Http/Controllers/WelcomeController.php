@@ -20,8 +20,9 @@ class WelcomeController extends PostsHelpersController
             $posts = $this->orderHomeByPublicationDate($order);
         }
 
+        $allPosts = Post::all();
         
-        return view('welcome')->with(compact(['posts']));
+        return view('welcome')->with(compact(['posts','allPosts']));
     }
     
 
