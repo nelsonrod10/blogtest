@@ -27,7 +27,7 @@ class BlogPostsController extends Controller
         
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $col = new Collection($posts);
-        $perPage = 6;
+        $perPage = 3;
         $currentPageSearchResults = $col->all();
         $test = array_slice($currentPageSearchResults, ($currentPage * $perPage) - $perPage, $perPage);
         $paginatedItems= new LengthAwarePaginator($test , count($col), $perPage,$currentPage);
