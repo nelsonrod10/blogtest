@@ -27,11 +27,11 @@ class BlogPostsController extends PostsHelpersController
         
         foreach($posts as $post){
             array_push($arrPosts,[
-                "title" => $post->title,
+                "title"            => $post->title,
                 "description"      => $post->description,
-                "publication_date"       => $post->publication_date,         
-                "image_url"         => $post->image_url,
-
+                "publication_date" => $post->publication_date,         
+                "image_url"        => $post->image_url,
+                "slug"             => $post->slug,
             ]);
         }
         
@@ -77,8 +77,7 @@ class BlogPostsController extends PostsHelpersController
         $post = Post::where('slug',$slug)->first();
         
         if($post){
-            $posts = $post->user->posts()->paginate(6);
-            return view('post.show')->with(compact('post','posts'));
+            return view('post.show')->with(compact('post'));
         }
 
         return redirect()->back();

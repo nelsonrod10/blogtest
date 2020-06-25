@@ -18,6 +18,8 @@ Route::get('/', function(){
   return view('welcome');
 });
 Route::get('posts-list/{order?}', 'BlogPostsController@index')->name('posts-list');
+Route::get('/post/{slug}', 'BlogPostsController@show')->name('post');
+Route::get('/posts-by-author/{id}/{order?}', 'AuthorPostsController@index');
 
 //Auth::routes();
 // Authentication Routes...
@@ -32,9 +34,7 @@ Route::get('register', function(){
 })->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/post/{slug}', 'BlogPostsController@show')->name('post');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('posts', 'PostController');

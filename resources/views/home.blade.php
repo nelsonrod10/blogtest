@@ -3,22 +3,13 @@
 @section('content')
     <div class="text-center">
         <h1 class="mt-6 font-bold break-normal text-center text-3xl mb-2">My posts</h1>
-        @if($posts->count() > 0)
+        @if($user->posts->count() > 0)
         <a href="{{route('posts.create')}}" class="text-center border border-teal-500 hover:border-teal-500 text-xs text-teal-900 hover:text-teal-500 font-bold py-2 px-4 rounded-full">New post</a>        
         @endif
-        <div class="text-center mt-4 text-gray-600">
-            Order your posts by publication date:
-            <a href="{{route('home')}}" class="text-blue-600 hover:text-blue-900">Random</a>
-            |
-            <a href="{{route('order-user-posts', 'asc')}}" class="text-blue-600 hover:text-blue-900">Ascending</a>
-            |
-            <a href="{{route('order-user-posts','desc')}}" class="text-blue-600 hover:text-blue-900">Descending</a>
-        </div>
     </div>
-    @if($posts->count() > 0)
-        <div class="flex flex-wrap mt-6">
-            @include('post.posts-card')
-        </div>
+    <br>
+    @if($user->posts->count() > 0)
+        <other-user-posts :author="{{$user}}" ></other-user-posts>
     @else
         <div class="max-w-md mx-auto flex py-6 px-10 text-center">
             <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-6 shadow-md" role="alert">

@@ -25,12 +25,7 @@ class HomeController extends PostsHelpersController
     public function index($order = null)
     {   
         $user = Auth::user();
-        if($order === null){
-            $posts = $user->posts()->paginate(12);
-        }else{
-            $posts = $this->orderUserPostByPublicationDate($user,$order);
-        }
-        
-        return view('home')->with(compact('posts'));
+                
+        return view('home')->with(compact('user'));
     }
 }

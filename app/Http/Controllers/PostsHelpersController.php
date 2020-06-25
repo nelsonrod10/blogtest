@@ -35,7 +35,7 @@ class PostsHelpersController extends Controller
 
     public function orderUserPostByPublicationDate($user,$order){
         if($order === "desc" || $order === "asc"){
-            return $user->posts->orderBy('publication_date', $order);
+            return $user->posts()->orderBy('publication_date', $order)->get();
         }
 
         return $user->posts;
