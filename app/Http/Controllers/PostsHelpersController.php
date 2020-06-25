@@ -26,19 +26,19 @@ class PostsHelpersController extends Controller
 
     public function orderHomeByPublicationDate($order){
         if($order === "desc" || $order === "asc"){
-            return Post::orderBy('publication_date', $order)->paginate(12);
+            return Post::orderBy('publication_date', $order)->get();
         }
 
-        return Post::paginate(12);
+        return Post::all();
         
     }
 
     public function orderUserPostByPublicationDate($user,$order){
         if($order === "desc" || $order === "asc"){
-            return $user->posts()->orderBy('publication_date', $order)->paginate(12);
+            return $user->posts->orderBy('publication_date', $order);
         }
 
-        return $user->posts()->paginate(12);
+        return $user->posts;
         
     }
 }

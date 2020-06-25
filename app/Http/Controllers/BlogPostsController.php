@@ -7,13 +7,23 @@ use App\Post;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
-class BlogPostsController extends Controller
+class BlogPostsController extends PostsHelpersController
 {
 
-    public function buscarPosts(){
-        date_default_timezone_set('America/Bogota');
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index($order = null)
+    {
         $arrPosts = [];
-        $posts= Post::all();
+        
+        if($order === null){
+            $posts= Post::all();
+        }else{
+            $posts = $this->orderHomeByPublicationDate($order);
+        }
         
         foreach($posts as $post){
             array_push($arrPosts,[
@@ -33,18 +43,6 @@ class BlogPostsController extends Controller
         $paginatedItems= new LengthAwarePaginator($test , count($col), $perPage,$currentPage);
         
         return response()->json($paginatedItems);
-        
-        //return response()->json($restaurantes);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
     }
 
     /**
