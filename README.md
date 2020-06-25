@@ -34,8 +34,8 @@ To clone or download please note:
 - Make a .env file (See .env.example file ), and configure your database features
 - Run php artisan migrate --seed. (run seeders for create a admin user)
 - Admin user credentials: 
-  email -> nelsonrod10@gmail.com, 
-  password -> admin
+  - email -> nelsonrod10@gmail.com, 
+  - password -> admin
 
 ## Contact.
 
