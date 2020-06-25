@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
+
 class ImportPostsController extends PostsHelpersController
 {
     /**
@@ -19,8 +20,7 @@ class ImportPostsController extends PostsHelpersController
         $user = Auth::user();
         $this->authorize('importPosts', $user);
 
-        $importedPosts = $user->importedPosts()->paginate(6);
-        return view('admin.import_posts.index')->with(compact('importedPosts'));
+        return view('admin.import_posts.index')->with(compact('user'));
     }
 
     /**
@@ -74,9 +74,11 @@ class ImportPostsController extends PostsHelpersController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $user = Auth::user();
+        
+        return $this->renderPagination($user->importedPosts);
     }
 
     /**

@@ -9,7 +9,7 @@
     </div>
     <br>
     @if($user->posts->count() > 0)
-        <other-user-posts :author="{{$user}}" ></other-user-posts>
+        <user-posts :author="{{$user}}" ></user-posts>
     @else
         <div class="max-w-md mx-auto flex py-6 px-10 text-center">
             <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-6 shadow-md" role="alert">

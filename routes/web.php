@@ -18,7 +18,7 @@ Route::get('/', function(){
   return view('welcome');
 });
 Route::get('posts-list/{order?}', 'BlogPostsController@index')->name('posts-list');
-Route::get('/post/{slug}', 'BlogPostsController@show')->name('post');
+Route::get('/post/{slug}', 'BlogPostsController@show');
 Route::get('/posts-by-author/{id}/{order?}', 'AuthorPostsController@index');
 
 //Auth::routes();
@@ -38,7 +38,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('posts', 'PostController');
-    Route::resource('import-posts', 'ImportPostsController');
-    Route::get('order-user-posts/{order?}', 'HomeController@index')->name('order-user-posts');
+    Route::resource('import-posts', 'ImportPostsController')->except(['show']);
+    Route::get('imported-posts-list/{order?}', 'ImportPostsController@show');
 });
 

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Arr;
 use App\Post;
-
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 class PostsHelpersController extends Controller
 {
     public function requestAPI($user){
@@ -40,5 +41,27 @@ class PostsHelpersController extends Controller
 
         return $user->posts;
         
+    }
+
+    public function renderPagination($posts){
+        $arrPosts = [];
+        foreach($posts as $post){
+            array_push($arrPosts,[
+                "title"            => $post->title,
+                "description"      => $post->description,
+                "publication_date" => $post->publication_date,         
+                "image_url"        => $post->image_url,
+                "slug"             => $post->slug,
+            ]);
+        }
+        
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $col = new Collection($posts);
+        $perPage = 3;
+        $currentPageSearchResults = $col->all();
+        $test = array_slice($currentPageSearchResults, ($currentPage * $perPage) - $perPage, $perPage);
+        $paginatedItems= new LengthAwarePaginator($test , count($col), $perPage,$currentPage);
+        
+        return response()->json($paginatedItems);
     }
 }

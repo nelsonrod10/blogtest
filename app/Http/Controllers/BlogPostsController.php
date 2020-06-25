@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 
 class BlogPostsController extends PostsHelpersController
 {
@@ -25,24 +23,7 @@ class BlogPostsController extends PostsHelpersController
             $posts = $this->orderHomeByPublicationDate($order);
         }
         
-        foreach($posts as $post){
-            array_push($arrPosts,[
-                "title"            => $post->title,
-                "description"      => $post->description,
-                "publication_date" => $post->publication_date,         
-                "image_url"        => $post->image_url,
-                "slug"             => $post->slug,
-            ]);
-        }
-        
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $col = new Collection($posts);
-        $perPage = 3;
-        $currentPageSearchResults = $col->all();
-        $test = array_slice($currentPageSearchResults, ($currentPage * $perPage) - $perPage, $perPage);
-        $paginatedItems= new LengthAwarePaginator($test , count($col), $perPage,$currentPage);
-        
-        return response()->json($paginatedItems);
+        return $this->renderPagination($posts);
     }
 
     /**

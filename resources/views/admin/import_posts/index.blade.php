@@ -5,10 +5,9 @@
         <h1 class="mt-6 font-bold break-normal text-center text-3xl mb-2">My imported posts</h1>
         @include('admin.import_posts.form')
     </div>
-    @if($importedPosts->count() > 0)
-        <div class="flex flex-wrap mt-6">
-            @include('post.posts-card',['posts' => $importedPosts])
-        </div>
+    <br>    
+    @if($user->importedPosts->count() > 0)
+        <imported-posts :author="{{$user}}" ></imported-posts>
     @else
         <div class="max-w-md mx-auto flex py-6 px-10 text-center">
             <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-6 shadow-md" role="alert">

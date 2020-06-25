@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 
+
 window.Vue = require('vue');
 
 /**
@@ -21,8 +22,9 @@ window.Vue = require('vue');
 Vue.component('InfiniteLoading', require('vue-infinite-loading').default);
 Vue.component('posts-index', require('./components/PostsIndex.vue').default);
 Vue.component('posts-cards', require('./components/PostsCards.vue').default);
-Vue.component('other-user-posts', require('./components/User/OtherUserPosts.vue').default);
+Vue.component('user-posts', require('./components/User/UserPosts.vue').default);
 Vue.component('other-author-posts', require('./components/User/OtherAuthorPosts.vue').default);
+Vue.component('imported-posts', require('./components/User/ImportedPosts.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
