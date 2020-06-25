@@ -4,7 +4,7 @@
 <div class="text-center">
     <h1 class="mt-6 font-bold break-normal text-center text-3xl mb-2">New post</h1>
 </div>
-<div class="mx-12 my-2 ">
+<div class="md:mx-12 my-2 ">
     <form method="post" action="{{route('posts.store')}}" class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4">
         @csrf
       <div class="mb-4">
