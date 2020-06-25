@@ -1,6 +1,6 @@
 <template>
 <div class="flex flex-wrap">
-    <div v-for="post in posts" class="w-full sm:w-1/2 md:w-1/3 mb-4 px-8">
+    <div v-for="post in postsLists" class="w-full sm:w-1/2 md:w-1/3 mb-4 px-8">
         <div class="max-w-sm rounded overflow-hidden shadow-lg">
             <img :src="post['image_url']" class="w-full h-54 h-auto max-h-2">
             <div class="px-6 py-4">
@@ -32,20 +32,22 @@
         },
         data(){
             return {
-                test:"hola perras"
+                page: 0,
+                postsLists : []
             }
             
         },
         methods:{
             InfiniteHandler($state) {
                 this.page += 1;
-                axios.get('restaurantes-plato-del-dia/'+this.platoBuscado, {
+                axios.get('posts-list', {
                   params: {
                     page: this.page,
                   },
                 }).then(response => {
+                    
                     if (response.data.data.length) {
-                        this.listaResultados=this.listaResultados.concat(response.data.data);
+                        this.postsLists=this.postsLists.concat(response.data.data);
                         $state.loaded();
                     } else {
                         $state.complete();

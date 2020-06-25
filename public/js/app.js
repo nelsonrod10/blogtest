@@ -1942,7 +1942,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      test: "hola perras"
+      page: 0,
+      postsLists: []
     };
   },
   methods: {
@@ -1950,13 +1951,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.page += 1;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('restaurantes-plato-del-dia/' + this.platoBuscado, {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('posts-list', {
         params: {
           page: this.page
         }
       }).then(function (response) {
         if (response.data.data.length) {
-          _this.listaResultados = _this.listaResultados.concat(response.data.data);
+          _this.postsLists = _this.postsLists.concat(response.data.data);
           $state.loaded();
         } else {
           $state.complete();
@@ -19592,7 +19593,7 @@ var render = function() {
     "div",
     { staticClass: "flex flex-wrap" },
     [
-      _vm._l(_vm.posts, function(post) {
+      _vm._l(_vm.postsLists, function(post) {
         return _c(
           "div",
           { staticClass: "w-full sm:w-1/2 md:w-1/3 mb-4 px-8" },
@@ -31926,14 +31927,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
   \******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
 /* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -31963,7 +31965,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

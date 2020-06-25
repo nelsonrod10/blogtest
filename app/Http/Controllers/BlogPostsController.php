@@ -4,9 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class BlogPostsController extends Controller
 {
+
+    public function buscarPosts(){
+        date_default_timezone_set('America/Bogota');
+        $arrPosts = [];
+        $posts= Post::all();
+        
+        foreach($posts as $post){
+            array_push($arrPosts,[
+                "title" => $post->title,
+                "description"      => $post->description,
+                "publication_date"       => $post->publication_date,         
+                "image_url"         => $post->image_url,
+
+            ]);
+        }
+        
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $col = new Collection($posts);
+        $perPage = 6;
+        $currentPageSearchResults = $col->all();
+        $test = array_slice($currentPageSearchResults, ($currentPage * $perPage) - $perPage, $perPage);
+        $paginatedItems= new LengthAwarePaginator($test , count($col), $perPage,$currentPage);
+        
+        return response()->json($paginatedItems);
+        
+        //return response()->json($restaurantes);
+    }
+
     /**
      * Display a listing of the resource.
      *

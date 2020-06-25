@@ -16,6 +16,7 @@ use App\Post;
 
 Route::get('/', 'WelcomeController@index');
 Route::get('order-posts/{order?}', 'WelcomeController@index')->name('order-posts');
+Route::get('posts-list', 'BlogPostsController@buscarPosts')->name('posts-list');
 
 //Auth::routes();
 // Authentication Routes...
