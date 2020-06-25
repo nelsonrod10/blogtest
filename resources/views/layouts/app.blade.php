@@ -48,7 +48,7 @@
                     <a class="inline-block text-sm py-1 leading-none text-teal-200 hover:text-white lg:mt-0" href="{{ route('login') }}">{{ __('Login') }}</a>
                     <br class="md:hidden">
                     @if (Route::has('register'))
-                        <a class="inline-block text-sm px-2 md:px-4 py-2 leading-none hover:text-white lg:mt-0 md:ml-4 border rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="inline-block text-sm px-2 md:px-4 py-2 leading-none lg:mt-0 md:ml-4 border rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                     @endif
                 @else
                     <a href="{{route('home')}}" class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</a>
